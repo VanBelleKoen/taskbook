@@ -1,5 +1,3 @@
-'use strict';
-
 const now = new Date();
 
 class Item {
@@ -13,4 +11,4 @@ class Item {
   }
 }
 
-module.exports = Item;
+export default Item;

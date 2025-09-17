@@ -147,7 +147,8 @@ function createTestTaskbook(mockStorage = null) {
     markUnstarred: jest.fn()
   }));
 
-  const Taskbook = require('../../src/taskbook');
+  const TaskbookModule = require('../../src/taskbook');
+  const Taskbook = TaskbookModule.default || TaskbookModule;
 
   // Reset the storage mock to ensure clean state
   storage.get.mockClear();
@@ -156,7 +157,7 @@ function createTestTaskbook(mockStorage = null) {
   storage.setArchive.mockClear();
 
   return {
-    taskbook: Taskbook,
+    taskbook: new Taskbook(),
     storage,
     render: require('../../src/render')
   };

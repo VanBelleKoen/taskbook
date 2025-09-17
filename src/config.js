@@ -1,11 +1,14 @@
-'use strict';
-const fs = require('fs');
-const os = require('os');
-const path = require('path');
-const pkg = require('../package.json');
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+import { fileURLToPath } from 'url';
 
-const {join} = path;
-const {default: defaultConfig} = pkg.configuration;
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const pkg = JSON.parse(fs.readFileSync(path.join(__dirname, '../package.json'), 'utf8'));
+
+const { join } = path;
+const { default: defaultConfig } = pkg.configuration;
 
 class Config {
   constructor() {
@@ -41,4 +44,4 @@ class Config {
   }
 }
 
-module.exports = new Config();
+export default new Config();

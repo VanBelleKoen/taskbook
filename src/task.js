@@ -1,5 +1,4 @@
-'use strict';
-const Item = require('./item');
+import Item from './item.js';
 
 class Task extends Item {
   constructor(options = {}) {
@@ -12,4 +11,4 @@ class Task extends Item {
   }
 }
 
-module.exports = Task;
+export default Task;

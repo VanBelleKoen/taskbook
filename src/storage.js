@@ -1,13 +1,11 @@
-#!/usr/bin/env node
-'use strict';
-const crypto = require('crypto');
-const fs = require('fs');
-const os = require('os');
-const path = require('path');
-const config = require('./config');
-const render = require('./render');
+import { randomBytes } from 'node:crypto';
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+import config from './config.js';
+import render from './render.js';
 
-const {basename, join} = path;
+const { basename, join } = path;
 
 class Storage {
   constructor() {
@@ -21,7 +19,7 @@ class Storage {
   }
 
   get _mainAppDir() {
-    const {taskbookDirectory} = config.get();
+    const { taskbookDirectory } = config.get();
     const defaultAppDirectory = join(os.homedir(), '.taskbook');
 
     if (!taskbookDirectory) {
@@ -125,4 +123,4 @@ class Storage {
   }
 }
 
-module.exports = Storage;
+export default Storage;

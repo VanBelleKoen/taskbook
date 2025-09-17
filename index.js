@@ -1,6 +1,7 @@
 #!/usr/bin/env node
-'use strict';
-const taskbook = require('./src/taskbook');
+import Taskbook from './src/taskbook.js';
+
+const taskbook = new Taskbook();
 
 const taskbookCLI = (input, flags) => {
   if (flags.archive) {
@@ -97,4 +98,4 @@ const taskbookCLI = (input, flags) => {
   return taskbook.displayStats();
 };
 
-module.exports = taskbookCLI;
+export default taskbookCLI;

@@ -1,6 +1,4 @@
-'use strict';
-
-module.exports = `
+const helpText = `
   Usage
     $ tb [<options> ...]
 
@@ -50,3 +48,5 @@ module.exports = `
       $ tb --task Make some buttercream
       $ tb --timeline
 `;
+
+export default helpText;

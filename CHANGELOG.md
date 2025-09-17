@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.2] - 2025-09-17
+
+### Fixed
+- **Dependencies**: Fixed dependency version conflicts that broke test suite
+  - Reverted `chalk`, `clipboardy`, `meow`, and `update-notifier` to CommonJS versions
+  - Resolved ES module import errors in Jest test environment
+  - All 99 tests now passing again
+
+### Technical Details
+- Dependency versions aligned with original project for compatibility
+- Test infrastructure maintained and stable
+
 ## [0.4.1] - 2025-09-17
 
 ### Added

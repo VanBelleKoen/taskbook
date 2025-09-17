@@ -1,80 +1,86 @@
 #!/usr/bin/env node
-'use strict';
-const meow = require('meow');
-const updateNotifier = require('update-notifier');
-const help = require('./src/help');
-const pkg = require('./package.json');
-const taskbook = require('.');
+import { readFileSync } from 'fs';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+import meow from 'meow';
+import updateNotifier from 'update-notifier';
+import help from './src/help.js';
+import taskbookCLI from './index.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const pkg = JSON.parse(readFileSync(join(__dirname, 'package.json'), 'utf8'));
 
 const cli = meow(help, {
+  importMeta: import.meta,
   flags: {
     help: {
       type: 'boolean',
-      alias: 'h'
+      shortFlag: 'h'
     },
     version: {
       type: 'boolean',
-      alias: 'v'
+      shortFlag: 'v'
     },
     archive: {
       type: 'boolean',
-      alias: 'a'
+      shortFlag: 'a'
     },
     restore: {
       type: 'boolean',
-      alias: 'r'
+      shortFlag: 'r'
     },
     task: {
       type: 'boolean',
-      alias: 't'
+      shortFlag: 't'
     },
     note: {
       type: 'boolean',
-      alias: 'n'
+      shortFlag: 'n'
     },
     delete: {
       type: 'boolean',
-      alias: 'd'
+      shortFlag: 'd'
     },
     check: {
       type: 'boolean',
-      alias: 'c'
+      shortFlag: 'c'
     },
     begin: {
       type: 'boolean',
-      alias: 'b'
+      shortFlag: 'b'
     },
     star: {
       type: 'boolean',
-      alias: 's'
+      shortFlag: 's'
     },
     copy: {
       type: 'boolean',
-      alias: 'y'
+      shortFlag: 'y'
     },
     timeline: {
       type: 'boolean',
-      alias: 'i'
+      shortFlag: 'i'
     },
     priority: {
       type: 'boolean',
-      alias: 'p'
+      shortFlag: 'p'
     },
     find: {
       type: 'boolean',
-      alias: 'f'
+      shortFlag: 'f'
     },
     list: {
       type: 'boolean',
-      alias: 'l'
+      shortFlag: 'l'
     },
     edit: {
       type: 'boolean',
-      alias: 'e'
+      shortFlag: 'e'
     },
     move: {
       type: 'boolean',
-      alias: 'm'
+      shortFlag: 'm'
     },
     clear: {
       type: 'boolean'
@@ -96,4 +102,4 @@ const cli = meow(help, {
 
 updateNotifier({ pkg }).notify();
 
-taskbook(cli.input, cli.flags);
+taskbookCLI(cli.input, cli.flags);

@@ -1,10 +1,9 @@
 #!/usr/bin/env node
-'use strict';
-const clipboardy = require('clipboardy');
-const Task = require('./task');
-const Note = require('./note');
-const Storage = require('./storage');
-const render = require('./render');
+import clipboardy from 'clipboardy';
+import Task from './task.js';
+import Note from './note.js';
+import Storage from './storage.js';
+import render from './render.js';
 
 class Taskbook {
   constructor() {
@@ -665,4 +664,4 @@ class Taskbook {
   }
 }
 
-module.exports = new Taskbook();
+export default Taskbook;

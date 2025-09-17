@@ -1,7 +1,6 @@
-'use strict';
-const chalk = require('chalk');
-const signale = require('signale');
-const config = require('./config');
+import chalk from 'chalk';
+import signale from 'signale';
+import config from './config.js';
 
 signale.config({ displayLabel: false });
 
@@ -366,4 +365,4 @@ class Render {
   }
 }
 
-module.exports = new Render();
+export default new Render();
