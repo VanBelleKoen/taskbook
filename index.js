@@ -74,22 +74,22 @@ const taskbookCLI = (input, flags) => {
       console.error('Error: Board name is required for --delete-board');
       process.exit(1);
     }
-    
+
     const boardName = input[0];
     const options = {};
-    
+
     if (flags.dryRun) {
       options.dryRun = true;
     }
-    
+
     if (flags.force) {
       options.force = true;
     }
-    
+
     if (flags.defaultBoard) {
       options.defaultBoard = flags.defaultBoard;
     }
-    
+
     return taskbook.deleteBoard(boardName, options);
   }
 

@@ -94,6 +94,6 @@ const cli = meow(help, {
   }
 });
 
-updateNotifier({pkg}).notify();
+updateNotifier({ pkg }).notify();
 
 taskbook(cli.input, cli.flags);

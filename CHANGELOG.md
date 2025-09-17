@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.1] - 2025-09-17
+
+### Added
+- **CLI Integration for Board Deletion**: Added command-line interface support for board deletion feature
+  - `--delete-board <boardName>` command to delete boards
+  - `--dry-run` option for previewing changes
+  - `--force` option to allow deletion of default board
+  - `--default-board <boardName>` option to specify custom default board for orphaned items
+  - Updated help text with examples and usage instructions
+
+### Examples
+```bash
+tb --delete-board @old-project               # Delete board
+tb --delete-board @old-project --dry-run     # Preview deletion
+tb --delete-board "My Board" --force         # Force delete default board
+```
+
 ## [0.4.0] - 2025-09-17
 
 ### Added

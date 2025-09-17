@@ -1,7 +1,7 @@
 {
   "name": "@koenvanbelle/taskbook",
   "productName": "Taskbook",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Tasks, boards & notes for the command-line habitat - Fork with board deletion feature",
   "repository": {
     "type": "git",
