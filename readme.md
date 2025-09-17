@@ -1,6 +1,11 @@
-<h1 align="center">
-  Taskbook
-</h1>
+
+<div align="center">
+  <h1>
+    Taskbook
+  </h1>
+</div>
+
+> **Note:** This is a **fork** of the original [Taskbook](https://github.com/klaudiosinani/taskbook) project by [Klaudio Sinani](https://github.com/klaudiosinani). All credit for the original work goes to the original creator. This fork was created because the need for new features arose. Please refer to the original repository for the main project and its ongoing development.
 
 <h4 align="center">
   Tasks, boards & notes for the command-line habitat
@@ -57,11 +62,38 @@ View highlights in a [taskbook board](https://raw.githubusercontent.com/klaudios
 
 - [Description](#description)
 - [Highlights](#highlights)
+- [Contents](#contents)
 - [Install](#install)
+  - [Yarn](#yarn)
+  - [NPM](#npm)
+  - [Snapcraft](#snapcraft)
 - [Usage](#usage)
 - [Views](#views)
+  - [Board View](#board-view)
+  - [Timeline View](#timeline-view)
 - [Configuration](#configuration)
+  - [In Detail](#in-detail)
+      - [`taskbookDirectory`](#taskbookdirectory)
+      - [`displayCompleteTasks`](#displaycompletetasks)
+      - [`displayProgressOverview`](#displayprogressoverview)
 - [Flight Manual](#flight-manual)
+  - [Create Task](#create-task)
+  - [Create Note](#create-note)
+  - [Create Board](#create-board)
+  - [Check Task](#check-task)
+  - [Begin Task](#begin-task)
+  - [Star Item](#star-item)
+  - [Copy Item Description](#copy-item-description)
+  - [Display Boards](#display-boards)
+  - [Display Timeline](#display-timeline)
+  - [Set Priority](#set-priority)
+  - [Move Item](#move-item)
+  - [Delete Item](#delete-item)
+  - [Delete Checked Tasks](#delete-checked-tasks)
+  - [Display Archive](#display-archive)
+  - [Restore Items](#restore-items)
+  - [List Items](#list-items)
+  - [Search Items](#search-items)
 - [Development](#development)
 - [Related](#related)
 - [Team](#team)
@@ -229,7 +261,11 @@ $ tb -t @coding @docs Update contributing guidelines
 ```
 
 ### Check Task
-
+Test Suites: 1 failed, 1 total
+Tests:       13 failed, 13 total
+Snapshots:   0 total
+Time:        0.167 s, estimated 1 s
+Ran all test suites.
 To mark a task as complete/incomplete, use the `--check`/`-c` option followed by the ids of the target tasks. Note that the option will update to its opposite the `complete` status of the given tasks, thus checking a complete task will render it as pending and a pending task as complete. Duplicate ids are automatically filtered out.
 
 ```

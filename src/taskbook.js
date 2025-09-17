@@ -64,7 +64,7 @@ class Taskbook {
   }
 
   _getBoards() {
-    const {_data} = this;
+    const { _data } = this;
     const boards = ['My Board'];
 
     Object.keys(_data).forEach(id => {
@@ -118,11 +118,11 @@ class Taskbook {
       boards.push('My Board');
     }
 
-    return {boards, description, id, priority};
+    return { boards, description, id, priority };
   }
 
   _getStats() {
-    const {_data} = this;
+    const { _data } = this;
     let [complete, inProgress, pending, notes] = [0, 0, 0, 0];
 
     Object.keys(_data).forEach(id => {
@@ -136,7 +136,7 @@ class Taskbook {
     const total = complete + pending + inProgress;
     const percent = (total === 0) ? 0 : Math.floor(complete * 100 / total);
 
-    return {percent, complete, inProgress, pending, notes};
+    return { percent, complete, inProgress, pending, notes };
   }
 
   _hasTerms(string, terms) {
@@ -293,7 +293,7 @@ class Taskbook {
   }
 
   _saveItemToArchive(item) {
-    const {_archive} = this;
+    const { _archive } = this;
     const archiveID = this._generateID(_archive);
 
     item._id = archiveID;
@@ -303,7 +303,7 @@ class Taskbook {
   }
 
   _saveItemToStorage(item) {
-    const {_data} = this;
+    const { _data } = this;
     const restoreID = this._generateID();
 
     item._id = restoreID;
@@ -313,9 +313,9 @@ class Taskbook {
   }
 
   createNote(desc) {
-    const {id, description, boards} = this._getOptions(desc);
-    const note = new Note({id, description, boards});
-    const {_data} = this;
+    const { id, description, boards } = this._getOptions(desc);
+    const note = new Note({ id, description, boards });
+    const { _data } = this;
     _data[id] = note;
     this._save(_data);
     render.successCreate(note);
@@ -323,7 +323,7 @@ class Taskbook {
 
   copyToClipboard(ids) {
     ids = this._validateIDs(ids);
-    const {_data} = this;
+    const { _data } = this;
     const descriptions = [];
 
     ids.forEach(id => descriptions.push(_data[id].description));
@@ -334,7 +334,7 @@ class Taskbook {
 
   checkTasks(ids) {
     ids = this._validateIDs(ids);
-    const {_data} = this;
+    const { _data } = this;
     const [checked, unchecked] = [[], []];
 
     ids.forEach(id => {
@@ -352,7 +352,7 @@ class Taskbook {
 
   beginTasks(ids) {
     ids = this._validateIDs(ids);
-    const {_data} = this;
+    const { _data } = this;
     const [started, paused] = [[], []];
 
     ids.forEach(id => {
@@ -369,9 +369,9 @@ class Taskbook {
   }
 
   createTask(desc) {
-    const {boards, description, id, priority} = this._getOptions(desc);
-    const task = new Task({id, description, boards, priority});
-    const {_data} = this;
+    const { boards, description, id, priority } = this._getOptions(desc);
+    const task = new Task({ id, description, boards, priority });
+    const { _data } = this;
     _data[id] = task;
     this._save(_data);
     render.successCreate(task);
@@ -379,7 +379,7 @@ class Taskbook {
 
   deleteItems(ids) {
     ids = this._validateIDs(ids);
-    const {_data} = this;
+    const { _data } = this;
 
     ids.forEach(id => {
       this._saveItemToArchive(_data[id]);
@@ -428,7 +428,7 @@ class Taskbook {
       process.exit(1);
     }
 
-    const {_data} = this;
+    const { _data } = this;
     _data[id].description = newDesc;
     this._save(_data);
     render.successEdit(id);
@@ -436,7 +436,7 @@ class Taskbook {
 
   findItems(terms) {
     const result = {};
-    const {_data} = this;
+    const { _data } = this;
 
     Object.keys(_data).forEach(id => {
       if (!this._hasTerms(_data[id].description, terms)) {
@@ -495,7 +495,7 @@ class Taskbook {
 
     boards = this._removeDuplicates(boards);
 
-    const {_data} = this;
+    const { _data } = this;
     _data[id].boards = boards;
     this._save(_data);
     render.successMove(id, boards);
@@ -503,7 +503,7 @@ class Taskbook {
 
   restoreItems(ids) {
     ids = this._validateIDs(ids, this._getIDs(this._archive));
-    const {_archive} = this;
+    const { _archive } = this;
 
     ids.forEach(id => {
       this._saveItemToStorage(_archive[id]);
@@ -516,7 +516,7 @@ class Taskbook {
 
   starItems(ids) {
     ids = this._validateIDs(ids);
-    const {_data} = this;
+    const { _data } = this;
     const [starred, unstarred] = [[], []];
 
     ids.forEach(id => {
@@ -552,7 +552,7 @@ class Taskbook {
     const [target] = targets;
     const id = this._validateIDs(target.replace('@', ''));
 
-    const {_data} = this;
+    const { _data } = this;
     _data[id].priority = level;
     this._save(_data);
     render.successPriority(id, level);
@@ -560,7 +560,7 @@ class Taskbook {
 
   clear() {
     const ids = [];
-    const {_data} = this;
+    const { _data } = this;
 
     Object.keys(_data).forEach(id => {
       if (_data[id].isComplete) {
@@ -573,6 +573,95 @@ class Taskbook {
     }
 
     this.deleteItems(ids);
+  }
+
+  deleteBoard(boardName, options = {}) {
+    const {
+      defaultBoard = 'My Board',
+      force = false,
+      dryRun = false
+    } = options;
+
+    // Input validation
+    if (!boardName || typeof boardName !== 'string') {
+      render.invalidBoardName();
+      process.exit(1);
+    }
+
+    // Prevent deletion of default board unless forced
+    if (boardName === 'My Board' && !force) {
+      render.cannotDeleteDefaultBoard();
+      process.exit(1);
+    }
+
+    // Check if board exists
+    const existingBoards = this._getBoards();
+    if (!existingBoards.includes(boardName)) {
+      render.boardNotFound(boardName);
+      process.exit(1);
+    }
+
+    const { _data } = this;
+    const affectedItems = [];
+    const stats = {
+      itemsReassigned: 0,
+      itemsMovedToDefault: 0,
+      totalItemsProcessed: 0
+    };
+
+    // Process each item
+    Object.keys(_data).forEach(id => {
+      const item = _data[id];
+      const boardIndex = item.boards.indexOf(boardName);
+
+      if (boardIndex !== -1) {
+        const originalBoards = [...item.boards];
+
+        // Remove the target board
+        item.boards.splice(boardIndex, 1);
+
+        // Handle items with no remaining boards
+        if (item.boards.length === 0) {
+          item.boards.push(defaultBoard);
+          stats.itemsMovedToDefault++;
+        } else {
+          stats.itemsReassigned++;
+        }
+
+        stats.totalItemsProcessed++;
+
+        affectedItems.push({
+          id: item._id,
+          description: item.description,
+          originalBoards,
+          newBoards: [...item.boards],
+          action: item.boards.includes(defaultBoard) ? 'moved_to_default' : 'reassigned'
+        });
+      }
+    });
+
+    // If dry run, just return what would happen
+    if (dryRun) {
+      return {
+        wouldAffect: affectedItems,
+        stats,
+        boardName
+      };
+    }
+
+    // Actually save the changes
+    if (stats.totalItemsProcessed > 0) {
+      this._save(_data);
+    }
+
+    // Render success message
+    render.successDeleteBoard(boardName, stats);
+
+    return {
+      affected: affectedItems,
+      stats,
+      boardName
+    };
   }
 }
 
