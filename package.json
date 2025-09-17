@@ -2,11 +2,15 @@
   "name": "@koenvanbelle/taskbook",
   "productName": "Taskbook",
   "version": "0.5.1",
+  "homepage": "https://github.com/koenvanbelle/taskbook#readme",
   "description": "Tasks, boards & notes for the command-line habitat - Fork with board deletion feature",
   "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/VanBelleKoen/taskbook.git"
+  },
+  "bugs": {
+    "url": "https://github.com/VanBelleKoen/taskbook/issues"
   },
   "license": "MIT",
   "author": {
@@ -137,5 +141,9 @@
     "setupFilesAfterEnv": [
       "<rootDir>/tests/setup.js"
     ]
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
   }
 }
