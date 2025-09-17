@@ -3,6 +3,21 @@
   <h1>
     Taskbook
   </h1>
+  
+  <p>
+    <a href="https://www.npmjs.com/package/@koenvanbelle/taskbook">
+      <img src="https://img.shields.io/npm/v/@koenvanbelle/taskbook.svg" alt="npm version">
+    </a>
+    <a href="https://github.com/VanBelleKoen/taskbook/releases">
+      <img src="https://img.shields.io/github/release/VanBelleKoen/taskbook.svg" alt="GitHub release">
+    </a>
+    <a href="https://github.com/VanBelleKoen/taskbook/blob/master/license.md">
+      <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License">
+    </a>
+    <a href="https://www.npmjs.com/package/@koenvanbelle/taskbook">
+      <img src="https://img.shields.io/npm/dt/@koenvanbelle/taskbook.svg" alt="npm downloads">
+    </a>
+  </p>
 </div>
 
 > **Note:** This is a **fork** of the original [Taskbook](https://github.com/klaudiosinani/taskbook) project by [Klaudio Sinani](https://github.com/klaudiosinani). All credit for the original work goes to the original creator. This fork was created because the need for new features arose. Please refer to the original repository for the main project and its ongoing development.
@@ -106,8 +121,14 @@ View highlights in a [taskbook board](https://raw.githubusercontent.com/klaudios
 
 ### Fork Installation (with Board Deletion Feature)
 
+**From npm:**
 ```bash
 npm install --global @koenvanbelle/taskbook
+```
+
+**From GitHub Packages:**
+```bash
+npm install --global @koenvanbelle/taskbook --registry=https://npm.pkg.github.com
 ```
 
 ### Original Package
