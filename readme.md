@@ -80,9 +80,9 @@ View highlights in a [taskbook board](https://raw.githubusercontent.com/klaudios
 - [Highlights](#highlights)
 - [Contents](#contents)
 - [Install](#install)
+  - [Fork Installation (with Board Deletion Feature)](#fork-installation-with-board-deletion-feature)
+  - [Original Package](#original-package)
   - [Yarn](#yarn)
-  - [NPM](#npm)
-  - [Snapcraft](#snapcraft)
 - [Usage](#usage)
 - [Views](#views)
   - [Board View](#board-view)
@@ -141,13 +141,6 @@ npm install --global taskbook
 
 ```bash
 yarn global add @koenvanbelle/taskbook
-```
-
-### Snapcraft
-
-```bash
-snap install taskbook
-snap alias taskbook tb # set alias
 ```
 
 **Note:** This fork includes additional features like board deletion. If you want the original version, use `taskbook` instead of `@koenvanbelle/taskbook`.
