@@ -75,7 +75,7 @@ class Storage {
   }
 
   _getRandomHexString(length = 8) {
-    return crypto.randomBytes(Math.ceil(length / 2)).toString('hex').slice(0, length);
+    return randomBytes(Math.ceil(length / 2)).toString('hex').slice(0, length);
   }
 
   _getTempFile(filePath) {
