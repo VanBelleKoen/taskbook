@@ -1,14 +1,17 @@
 {
-  "name": "taskbook",
+  "name": "@koenvanbelle/taskbook",
   "productName": "Taskbook",
-  "version": "0.3.0",
-  "description": "Tasks, boards & notes for the command-line habitat",
-  "repository": "klaudiosinani/taskbook",
+  "version": "0.4.0",
+  "description": "Tasks, boards & notes for the command-line habitat - Fork with board deletion feature",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VanBelleKoen/taskbook.git"
+  },
   "license": "MIT",
   "author": {
-    "name": "Klaudio Sinani",
-    "email": "klaudiosinani@protonmail.ch",
-    "url": "https://klaudiosinani.com"
+    "name": "Koen Van Belle",
+    "email": "koenvanbelle@gmail.com",
+    "url": "https://github.com/VanBelleKoen"
   },
   "bin": {
     "tb": "cli.js"
@@ -31,8 +34,15 @@
     "line",
     "console",
     "cli",
-    "app"
+    "app",
+    "board-deletion",
+    "fork"
   ],
+  "originalAuthor": {
+    "name": "Klaudio Sinani",
+    "email": "klaudiosinani@protonmail.ch",
+    "url": "https://klaudiosinani.com"
+  },
   "configuration": {
     "default": {
       "taskbookDirectory": "~",

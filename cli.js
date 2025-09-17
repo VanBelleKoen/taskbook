@@ -78,6 +78,18 @@ const cli = meow(help, {
     },
     clear: {
       type: 'boolean'
+    },
+    deleteBoard: {
+      type: 'boolean'
+    },
+    dryRun: {
+      type: 'boolean'
+    },
+    force: {
+      type: 'boolean'
+    },
+    defaultBoard: {
+      type: 'string'
     }
   }
 });

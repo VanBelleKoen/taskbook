@@ -12,6 +12,7 @@ module.exports = `
       --clear            Delete all checked items
       --copy, -y         Copy item description
       --delete, -d       Delete item
+      --delete-board     Delete board and reassign items
       --edit, -e         Edit item description
       --find, -f         Search for items
       --help, -h         Display help message
@@ -33,6 +34,9 @@ module.exports = `
       $ tb --clear
       $ tb --copy 1 2 3
       $ tb --delete 4
+      $ tb --delete-board @old-project
+      $ tb --delete-board @old-project --dry-run
+      $ tb --delete-board "My Board" --force
       $ tb --edit @3 Merge PR #42
       $ tb --find documentation
       $ tb --list pending coding

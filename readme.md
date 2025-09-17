@@ -43,6 +43,7 @@ Visit the [contributing guidelines](https://github.com/klaudiosinani/taskbook/bl
 ## Highlights
 
 - Organize tasks & notes to boards
+- **🆕 Delete boards with automatic item reassignment**
 - Board & timeline views
 - Priority & favorite mechanisms
 - Search & filter items
@@ -80,6 +81,7 @@ View highlights in a [taskbook board](https://raw.githubusercontent.com/klaudios
   - [Create Task](#create-task)
   - [Create Note](#create-note)
   - [Create Board](#create-board)
+  - [Delete Board](#delete-board)
   - [Check Task](#check-task)
   - [Begin Task](#begin-task)
   - [Star Item](#star-item)
@@ -102,16 +104,22 @@ View highlights in a [taskbook board](https://raw.githubusercontent.com/klaudios
 
 ## Install
 
-### Yarn
+### Fork Installation (with Board Deletion Feature)
 
 ```bash
-yarn global add taskbook
+npm install --global @koenvanbelle/taskbook
 ```
 
-### NPM
+### Original Package
 
 ```bash
 npm install --global taskbook
+```
+
+### Yarn
+
+```bash
+yarn global add @koenvanbelle/taskbook
 ```
 
 ### Snapcraft
@@ -120,6 +128,8 @@ npm install --global taskbook
 snap install taskbook
 snap alias taskbook tb # set alias
 ```
+
+**Note:** This fork includes additional features like board deletion. If you want the original version, use `taskbook` instead of `@koenvanbelle/taskbook`.
 
 **Note:** Due to the snap's strictly confined nature, both the storage & configuration files will be saved under the [`$SNAP_USER_DATA`](https://docs.snapcraft.io/reference/env) environment variable instead of the generic `$HOME` one.
 
@@ -260,12 +270,31 @@ Boards are automatically initialized when creating a new task or note. To create
 $ tb -t @coding @docs Update contributing guidelines
 ```
 
+### Delete Board
+
+**🆕 Fork Feature**: To delete a board and reassign its items to other boards, use the `--delete-board` option followed by the board name. Items that only belong to the deleted board will be moved to the default board (`My Board`). Items that belong to multiple boards will remain in their other boards.
+
+```bash
+# Delete a board (dry run first to preview changes)
+$ tb --delete-board @old-project --dry-run
+
+# Actually delete the board
+$ tb --delete-board @old-project
+
+# Force delete the default board
+$ tb --delete-board "My Board" --force
+
+# Delete board and move orphaned items to a custom board
+$ tb --delete-board @old-project --default-board @archive
+```
+
+**Options:**
+- `--dry-run`: Preview what items would be affected without making changes
+- `--force`: Allow deletion of the default board
+- `--default-board <name>`: Specify where orphaned items should go (default: "My Board")
+
 ### Check Task
-Test Suites: 1 failed, 1 total
-Tests:       13 failed, 13 total
-Snapshots:   0 total
-Time:        0.167 s, estimated 1 s
-Ran all test suites.
+
 To mark a task as complete/incomplete, use the `--check`/`-c` option followed by the ids of the target tasks. Note that the option will update to its opposite the `complete` status of the given tasks, thus checking a complete task will render it as pending and a pending task as complete. Duplicate ids are automatically filtered out.
 
 ```
